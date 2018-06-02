@@ -12,20 +12,9 @@ public class Round {
     
     public void action(Player[] table){
         initialDeal(table);
-<<<<<<< HEAD
-        printRound(table);
-        while(!action.equalsIgnoreCase("stand")){
-            System.out.println("Hit or Stand?");
-            action = in.next();
-            if(action.equalsIgnoreCase("Hit")){
-                System.out.println("hit");
-            }
-        }  
-        //this is a test
-=======
         print(table);
         hit(table);
->>>>>>> Elias'
+
     }     
     
     public void initialDeal(Player[] table){
