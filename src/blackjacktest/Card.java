@@ -2,7 +2,7 @@ package blackjacktest;
 
 public class Card{
     private String pip;
-    private int rank;
+    int rank;
     private String suit;
     private boolean face;
     private final int DECKSIZE = 52;

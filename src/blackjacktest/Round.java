@@ -12,9 +12,7 @@ public class Round {
     
     public void action(Player[] table){
         initialDeal(table);
-        print(table);
         hit(table);
-
     }     
     
     public void initialDeal(Player[] table){
@@ -23,23 +21,33 @@ public class Round {
         
         for(int i = 0; i < numPlayers; i++){
             table[i].setHand(downCard);
+            table[i].count = downCard.rank;
         }
         for(int j = 0; j < numPlayers; j++){
             table[j].setHand(upCard);
+            table[j].count = table[j].count + upCard.rank;
         }
+        print(table);
     }
     
     public void hit(Player[] table){
         for(int i=0; i<table.length; i++){
-                String action = "Start";
-                System.out.println("Hit or stand?");
-                action = in.next();
-                while(!action.equalsIgnoreCase("stand")){
-                    Card freshCard = new Card(rand.nextInt(53), true);
+            boolean flagBust = false;
+            String action;
+            System.out.println("Count: "+ table[i].count +". Hit or stand?");
+            action = in.next();
+            while(!action.equalsIgnoreCase("stand") && !flagBust){
+                Card freshCard = new Card(rand.nextInt(53), true);
+                if(table[i].count + freshCard.rank > 21){
+                    System.out.println("You have busted!");
+                    flagBust = true;
+                }else{
+                    table[i].count = table[i].count + freshCard.rank;
                     table[i].setHand(freshCard);
                     print(table);
-                    System.out.println("Hit or stand?");
+                    System.out.println("Count is "+table[i].count+". Hit or stand?");
                     action = in.next();
+                }
             }
         }
     }
