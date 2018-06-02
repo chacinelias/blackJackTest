@@ -11,8 +11,8 @@ public class Round {
     }
     
     public void action(Player[] table){
-        String action = "start";
         initialDeal(table);
+<<<<<<< HEAD
         printRound(table);
         while(!action.equalsIgnoreCase("stand")){
             System.out.println("Hit or Stand?");
@@ -22,6 +22,10 @@ public class Round {
             }
         }  
         //this is a test
+=======
+        print(table);
+        hit(table);
+>>>>>>> Elias'
     }     
     
     public void initialDeal(Player[] table){
@@ -33,14 +37,30 @@ public class Round {
         }
         for(int j = 0; j < numPlayers; j++){
             table[j].setHand(upCard);
-        }            
+        }
     }
     
-    public void printRound(Player[] table){
+    public void hit(Player[] table){
+        for(int i=0; i<table.length; i++){
+                String action = "Start";
+                System.out.println("Hit or stand?");
+                action = in.next();
+                while(!action.equalsIgnoreCase("stand")){
+                    Card freshCard = new Card(rand.nextInt(53), true);
+                    table[i].setHand(freshCard);
+                    print(table);
+                    System.out.println("Hit or stand?");
+                    action = in.next();
+            }
+        }
+    }
+
+    public void print(Player[] table){
         for(int i = 0; i < numPlayers; i++){
             System.out.println(table[i].getName());
-            System.out.print("["+table[i].hand.get(table[i].hand.size() - 2).getMyGraphic()+"]"+" ");
-            System.out.println("["+table[i].hand.get(table[i].hand.size() - 1).getMyGraphic()+"]");
+                for(int c = 0; c < table[i].hand.size(); c++){
+                    System.out.println("["+table[i].hand.get(c).getMyGraphic()+"]");
+                }
         }
     }
 }

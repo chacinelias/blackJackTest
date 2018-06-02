@@ -23,6 +23,5 @@ public class BlackJackTest {
         }
         newGame.setTable(table);
         newGame.gameStart();
-    }
-    
-}
+        }
+}   
